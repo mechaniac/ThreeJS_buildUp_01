@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function createGround() {
+export function createGround(): THREE.Mesh {
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
     new THREE.MeshStandardMaterial({ color: 0x222226, roughness: 0.9 })

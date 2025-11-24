@@ -1,4 +1,6 @@
-export function handleResize(renderer, camera) {
+import type * as THREE from 'three';
+
+export function handleResize(renderer: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera) {
   function resize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -7,6 +9,6 @@ export function handleResize(renderer, camera) {
     camera.updateProjectionMatrix();
   }
   window.addEventListener('resize', resize);
-  resize(); // initial
+  resize();
   return () => window.removeEventListener('resize', resize);
 }

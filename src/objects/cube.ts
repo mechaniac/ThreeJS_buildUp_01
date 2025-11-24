@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
-export function createCube() {
-  const geom = new THREE.BoxGeometry(1, 3, 1);
+export function createCube(): THREE.Mesh<THREE.BoxGeometry, THREE.MeshStandardMaterial> {
+  const geom = new THREE.BoxGeometry(1, 1, 1);
   const mat = new THREE.MeshStandardMaterial({
     color: 0x44aa88,
     roughness: 0.5,

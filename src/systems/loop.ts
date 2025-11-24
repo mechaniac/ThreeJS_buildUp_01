@@ -1,14 +1,15 @@
-// a tiny game loop that calls registered updaters each frame
-export function createLoop(renderer, scene, camera) {
-  const updaters = new Set();
-  let raf = 0, last = performance.now();
+import type { UpdateFn } from '../types';
 
-  function add(fn) { updaters.add(fn); return () => updaters.delete(fn); }
+export function createLoop(renderer: any, scene: any, camera: any) {
+  const updaters = new Set<UpdateFn>();
+  let raf = 0;
+  let last = performance.now();
 
-  function frame(now) {
+  function add(fn: UpdateFn) { updaters.add(fn); return () => updaters.delete(fn); }
+
+  function frame(now: number) {
     const dt = (now - last) / 1000;
     last = now;
-
     for (const fn of updaters) fn(dt);
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);

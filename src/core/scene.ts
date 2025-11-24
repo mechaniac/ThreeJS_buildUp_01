@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function createScene() {
+export function createScene(): THREE.Scene {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0f0f12);
 
@@ -8,7 +8,7 @@ export function createScene() {
   key.position.set(3, 4, 2);
 
   const fill = new THREE.AmbientLight(0xffffff, 0.3);
-
   scene.add(key, fill);
+
   return scene;
 }
