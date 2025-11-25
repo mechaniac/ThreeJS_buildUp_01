@@ -29,11 +29,11 @@ scene.add(ground);
 // limb 1
 const limb1Profiles = [
   makeCircleProfile(0.4, new THREE.Vector3(0, 0, 0)),
-  makeCircleProfile(0.3, new THREE.Vector3(0, 1, 0)),
-  makeCircleProfile(0.2, new THREE.Vector3(0, 2, 0)),
+  makeCircleProfile(0.1, new THREE.Vector3(0, 1, 0)),
+  makeCircleProfile(0.5, new THREE.Vector3(0, 2, 0)),
 ];
 
-const limb1Geo = buildLoftTube(limb1Profiles, 32);
+const limb1Geo = buildLoftTube(limb1Profiles, 8);
 const limb1Mat = new THREE.MeshStandardMaterial({ color: 0x4477cc });
 const limb1    = new THREE.Mesh(limb1Geo, limb1Mat);
 scene.add(limb1);

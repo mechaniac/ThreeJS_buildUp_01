@@ -4,7 +4,7 @@ import type { Profile } from '../../shared/types';
 
 export function buildLoftTube(
   profiles: Profile[],
-  segmentsU = 32
+  segmentsU = 12
 ): THREE.BufferGeometry {
   if (profiles.length < 2) {
     throw new Error('buildLoftTube requires at least 2 profiles');
