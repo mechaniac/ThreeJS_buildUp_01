@@ -1,5 +1,5 @@
 import type * as THREE from 'three';
-import type { Disposable } from '../types';
+import type { Disposable } from '../shared/types';
 
 export function addDragRotate(target: THREE.Object3D, domElement: HTMLElement): Disposable {
   let dragging = false;

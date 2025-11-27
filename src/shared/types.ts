@@ -1,5 +1,6 @@
 
 import type * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 export type AppCamera = THREE.PerspectiveCamera;
 
@@ -14,6 +15,11 @@ export type UpdateFn = (dt: number) => void;
 
 export interface Disposable {
   dispose(): void;
+}
+
+export interface OrbitControlsWrapper extends Disposable {
+  controls: OrbitControls;
+  update: UpdateFn;
 }
 
 export interface Updatable {

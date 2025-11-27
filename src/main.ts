@@ -8,42 +8,28 @@ import { createLoop } from './systems/loop';
 import { handleResize } from './systems/resize';
 import { addOrbitControls } from './controls/orbit';
 import { createGround } from './objects/ground';
-import { createMovableLimb } from './modules/movableLimb';
+import { createDraggableSphere } from './modules/draggableSphere';
 
 const canvas = document.getElementById('scene') as HTMLCanvasElement;
 
 const renderer = createRenderer(canvas);
-const camera = createCamera({ fov: 50, position: [0, 5, 5] });
-const scene = createScene();
+const camera   = createCamera({ fov: 50, position: [0, 3, 3] });
+const scene    = createScene();
 
 const ground = createGround();
 scene.add(ground);
-
-// modules
-const limb = createMovableLimb(scene, camera, renderer, {
-  radii: [0.4, 0.3, 0.2],
-  centers: [
-    new THREE.Vector3(-1, 0, 0),
-    new THREE.Vector3(-1, 1, 0),
-    new THREE.Vector3(-1, 2, 0),
-  ],
-  segmentsU: 8,
-  meshColor: 0xFF2600
-});
-
-const limb2 = createMovableLimb(scene, camera, renderer, {
-  radii: [0.4, 0.3, 0.2],
-  centers: [
-    new THREE.Vector3(1, 0, 0),
-    new THREE.Vector3(1, 1, 0),
-    new THREE.Vector3(1, 2, 0),
-  ],
-  segmentsU: 8
-});
-
-const loop = createLoop(renderer, scene, camera);
-const orbit = addOrbitControls(camera, renderer.domElement);
+const orbit  = addOrbitControls(camera, renderer.domElement);
+const loop   = createLoop(renderer, scene, camera);
 const unresize = handleResize(renderer, camera);
+
+// just one draggable sphere for now
+const sphere = createDraggableSphere(scene, camera, renderer, orbit, {
+  position: new THREE.Vector3(0, 1, 0),
+  radius: 0.3,
+  color: 0xffaa33,
+});
+
+
 
 loop.add(orbit.update);
 loop.start();
@@ -52,7 +38,7 @@ if (import.meta.hot) {
   import.meta.hot.dispose(() => {
     loop.stop();
     orbit.dispose();
-    limb.dispose();
+    sphere.dispose();
     unresize();
   });
 }
